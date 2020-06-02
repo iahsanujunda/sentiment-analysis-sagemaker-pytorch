@@ -11,7 +11,6 @@ class App extends React.Component {
   }
 
   sentimentResultHandler = (value) => {
-    console.log(this.state.sentiment);
     this.setState({sentiment: value});
   }
 
@@ -24,6 +23,7 @@ class App extends React.Component {
             <h1>Is your review positive, or negative?</h1>
 
             <ReviewForm onSentimentResult={this.sentimentResultHandler} />
+            {console.log(this.state.sentiment)}
           </Col>
           <Col xs={2} />
         </Row>
