@@ -3,21 +3,34 @@ import {Form, Button} from "react-bootstrap";
 
 class ReviewForm extends React.Component{
   constructor(props) {
-    super(props)
+    super(props);
+
     this.state = {
-      review: '',
+      review: ''
     }
+
+    this.handleSubmit = this.handleSubmit.bind(this);
   }
 
   handleSubmit = async (event) => {
     event.preventDefault();
-    const { review } = this.state;
-
+    let review = this.state.review;
     console.log(review);
+
+    if (review.includes('test')) {
+      console.log('Positive Sentiment');
+      this.props.onSentimentResult('1');
+    }
+    else {
+      console.log('Negative Sentiment');
+      this.props.onSentimentResult('2');
+    }
   }
 
-  handleChange = async (event) => {
-    this.setState({review: event.target.value})
+  handleChange = event => {
+    this.setState({
+      review: event.target.value
+    });
   }
 
   render () {
@@ -28,8 +41,8 @@ class ReviewForm extends React.Component{
           <Form.Control
             as="textarea"
             rows="4"
+            value={this.state.review}
             onChange={this.handleChange.bind(this)}
-            value={this.state.value}
           />
         </Form.Group>
         <Button type='submit' xs='2' variant="primary">Submit</Button>

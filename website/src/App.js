@@ -6,13 +6,13 @@ import './App.css';
 import ReviewForm from "./components/review-form.component";
 
 class App extends React.Component {
-  constructor (props) {
-    super(props);
+  state = {
+    sentiment: ''
+  }
 
-    this.state = {
-      sentiment: '',
-      message: ''
-    }
+  sentimentResultHandler = (value) => {
+    console.log(this.state.sentiment);
+    this.setState({sentiment: value});
   }
 
   render () {
@@ -23,7 +23,7 @@ class App extends React.Component {
           <Col xs={8}>
             <h1>Is your review positive, or negative?</h1>
 
-            <ReviewForm />
+            <ReviewForm onSentimentResult={this.sentimentResultHandler} />
           </Col>
           <Col xs={2} />
         </Row>
