@@ -1,26 +1,35 @@
 import React from 'react';
-import logo from './logo.svg';
+import {Col, Container, Row} from "react-bootstrap";
+
 import './App.css';
 
-function App() {
-  return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
+import ReviewForm from "./components/review-form.component";
+
+class App extends React.Component {
+  constructor (props) {
+    super(props);
+
+    this.state = {
+      sentiment: '',
+      message: ''
+    }
+  }
+
+  render () {
+    return (
+      <Container className='main-container' fluid>
+        <Row>
+          <Col xs={2} />
+          <Col xs={8}>
+            <h1>Is your review positive, or negative?</h1>
+
+            <ReviewForm />
+          </Col>
+          <Col xs={2} />
+        </Row>
+      </Container>
+    )
+  }
 }
 
 export default App;
