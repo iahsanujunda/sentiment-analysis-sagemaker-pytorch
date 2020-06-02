@@ -1,5 +1,8 @@
 import React from "react";
 import {Form, Button} from "react-bootstrap";
+import lodash from 'lodash';
+
+import './review-form.component.scss';
 
 class ReviewForm extends React.Component{
   constructor(props) {
@@ -15,37 +18,47 @@ class ReviewForm extends React.Component{
   handleSubmit = async (event) => {
     event.preventDefault();
     let review = this.state.review;
-    console.log(review);
 
-    if (review.includes('test')) {
-      console.log('Positive Sentiment');
-      this.props.onSentimentResult('1');
-    }
-    else {
-      console.log('Negative Sentiment');
-      this.props.onSentimentResult('2');
+    if ( review === '' ) {
+      this.props.onSentimentResult('invalid');
+    } else {
+      if (review.includes('test')) {
+        console.log('Positive Sentiment');
+        this.props.onSentimentResult('pos');
+      }
+      else {
+        console.log('Negative Sentiment');
+        this.props.onSentimentResult('neg');
+      }
     }
   }
 
   handleChange = event => {
     this.setState({
-      review: event.target.value
+      review: lodash.trim(event.target.value)
     });
+  }
+
+  handleClear = event => {
+    this.setState({
+      review: ''
+    })
   }
 
   render () {
     return(
-      <Form onSubmit={this.handleSubmit}>
+      <Form onSubmit={this.handleSubmit} className='review-form'>
         <Form.Group controlId="exampleForm.ControlTextarea1">
-          <Form.Label>Enter your review here to find out...</Form.Label>
           <Form.Control
             as="textarea"
             rows="4"
             value={this.state.review}
             onChange={this.handleChange.bind(this)}
+            placeholder='Enter your review here to find out...'
           />
         </Form.Group>
-        <Button type='submit' xs='2' variant="primary">Submit</Button>
+        <Button className='submit-button' type='submit' xs='2' variant="primary">Submit</Button>
+        <Button className='clear-button' xs='2' variant="danger" onClick={this.handleClear}>Clear</Button>
       </Form>
     )
   }
