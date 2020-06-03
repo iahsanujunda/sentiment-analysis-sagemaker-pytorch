@@ -83,7 +83,7 @@ class ReviewForm extends React.Component{
       action: "Submitting Review"
     });
 
-    let reviewIndex = Math.floor(Math.random() * Math.floor(23));
+    let reviewIndex = Math.floor(Math.random() * Math.floor(40));
     this.setState({
       review: this.reviewStore[reviewIndex]
     })

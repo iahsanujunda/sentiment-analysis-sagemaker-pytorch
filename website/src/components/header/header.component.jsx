@@ -5,10 +5,6 @@ import './header.component.scss';
 import ReactGA from "react-ga";
 
 class Header extends React.Component {
-  componentDidMount = () => {
-    ReactGA.initialize('UA-123791717-1');
-  }
-
   render() {
     return (
       <Navbar className='header' bg="dark" variant="dark" expand="lg">

@@ -6,9 +6,10 @@ import './App.css';
 import Homepage from "./pages/homepage.component";
 import Header from "./components/header/header.component";
 
+ReactGA.initialize('UA-123791717-1');
+
 class App extends React.Component {
   componentDidMount =() => {
-    ReactGA.initialize('UA-123791717-1');
     ReactGA.pageview('/')
   }
 
