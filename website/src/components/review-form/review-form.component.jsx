@@ -21,10 +21,6 @@ class ReviewForm extends React.Component{
     this.reviewStore = reviews;
   }
 
-  componentDidMount() {
-    ReactGA.initialize('UA-123791717-1');
-  }
-
   handleSubmit = async (event) => {
     event.preventDefault();
 
@@ -80,7 +76,7 @@ class ReviewForm extends React.Component{
   handleGetRandomView = () => {
     ReactGA.event({
       category: "CLICK",
-      action: "Submitting Review"
+      action: "Get Random Review"
     });
 
     let reviewIndex = Math.floor(Math.random() * Math.floor(40));
