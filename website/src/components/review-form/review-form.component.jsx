@@ -32,7 +32,7 @@ class ReviewForm extends React.Component{
       this.props.onSentimentResult('invalid');
     } else {
       await axios.post(
-          'https://gkxxu6qpvl.execute-api.us-east-2.amazonaws.com/prod',
+          `${process.env.REACT_APP_AWS_API_ENDPOINT}`,
           review,
           {headers: header})
           .then(response => {
