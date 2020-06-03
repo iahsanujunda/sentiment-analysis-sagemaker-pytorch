@@ -4,6 +4,7 @@ import lodash from 'lodash';
 import axios from 'axios';
 
 import './review-form.component.scss';
+import reviews from '../../assets/reviews';
 
 class ReviewForm extends React.Component{
   constructor(props) {
@@ -11,10 +12,12 @@ class ReviewForm extends React.Component{
 
     this.state = {
       review: '',
-      isProcessing: 0
+      copied: false,
+      isProcessing: 0,
     }
 
     this.handleSubmit = this.handleSubmit.bind(this);
+    this.reviewStore = reviews;
   }
 
   handleSubmit = async (event) => {
@@ -24,7 +27,7 @@ class ReviewForm extends React.Component{
 
     let review = lodash.trim(this.state.review);
     const header = {
-        'X-API-Key': `${process.env.REACT_APP_AWS_API_KEY}`
+      'X-API-Key': `${process.env.REACT_APP_AWS_API_KEY}`
     }
 
     if ( review === '' ) {
@@ -32,23 +35,23 @@ class ReviewForm extends React.Component{
       this.props.onSentimentResult('invalid');
     } else {
       await axios.post(
-          `${process.env.REACT_APP_AWS_API_ENDPOINT}`,
-          review,
-          {headers: header})
-          .then(response => {
-            if (response.data === 1) {
-              this.setState({isProcessing: 0});
-              this.props.onSentimentResult('pos');
-            }
-            else {
-              this.setState({isProcessing: 0});
-              this.props.onSentimentResult('neg');
-            }
-          })
-          .catch(err => {
-              this.setState({isProcessing: 0});
-              this.props.onSentimentResult('invalid');
-          })
+        `${process.env.REACT_APP_AWS_API_ENDPOINT}`,
+        review,
+        {headers: header})
+        .then(response => {
+          if (response.data === 1) {
+            this.setState({isProcessing: 0});
+            this.props.onSentimentResult('pos');
+          }
+          else {
+            this.setState({isProcessing: 0});
+            this.props.onSentimentResult('neg');
+          }
+        })
+        .catch(err => {
+          this.setState({isProcessing: 0});
+          this.props.onSentimentResult('invalid');
+        })
     }
   }
 
@@ -62,6 +65,10 @@ class ReviewForm extends React.Component{
     this.setState({
       review: ''
     })
+  }
+
+  componentDidMount = () => {
+
   }
 
   render () {
@@ -84,6 +91,7 @@ class ReviewForm extends React.Component{
           disabled={this.state.isProcessing === 1}
         >Submit</Button>
         <Button className='clear-button' xs='2' variant="danger" onClick={this.handleClear}>Clear</Button>
+        <Button className='random-button' xs='2' variant="primary" onClick={this.handleClear}>Clear</Button>
       </Form>
     )
   }
