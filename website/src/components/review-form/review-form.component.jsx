@@ -67,8 +67,11 @@ class ReviewForm extends React.Component{
     })
   }
 
-  componentDidMount = () => {
-
+  handleGetRandomView = () => {
+    let reviewIndex = Math.floor(Math.random() * Math.floor(23));
+    this.setState({
+      review: this.reviewStore[reviewIndex]
+    })
   }
 
   render () {
@@ -80,6 +83,7 @@ class ReviewForm extends React.Component{
             rows="6"
             value={this.state.review}
             onChange={this.handleChange.bind(this)}
+            disabled={this.state.isProcessing === 1}
             placeholder='Enter your review here to find out...'
           />
         </Form.Group>
@@ -91,7 +95,13 @@ class ReviewForm extends React.Component{
           disabled={this.state.isProcessing === 1}
         >Submit</Button>
         <Button className='clear-button' xs='2' variant="danger" onClick={this.handleClear}>Clear</Button>
-        <Button className='random-button' xs='2' variant="primary" onClick={this.handleClear}>Clear</Button>
+        <Button
+          className='random-button'
+          xs='2'
+          variant="secondary"
+          onClick={this.handleGetRandomView}>
+          Get random reviews
+        </Button>
       </Form>
     )
   }
