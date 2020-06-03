@@ -1,7 +1,7 @@
 # SageMaker Deployment Project  
   
 The notebook and Python files provided here, once completed, result in a simple web app which interacts with a deployed recurrent neural network performing sentiment analysis on movie reviews taken from IMDB dataset. The RNN model is  
-deployed on AWS Sagemaker and can be accessed by publicly accessible API and a simple web page which interacts with the deployed endpoint. The accompanying web app can be accessed [here]('https://sentiment-sagemaker.herokuapp.com').  
+deployed on AWS Sagemaker and can be accessed by publicly accessible API and a simple web page which interacts with the deployed endpoint. The accompanying web app can be accessed [here](https://sentiment-sagemaker.herokuapp.com).  
   
 Even though the web app is going to be accessible from public, we are not going to open public access to the sagemaker endpoint. In order to access sagemaker deployed endpoints, our web app will make a request to AWS lambda function that in turn will invoke the sagemaker endpoint and return the prediction result.
 
