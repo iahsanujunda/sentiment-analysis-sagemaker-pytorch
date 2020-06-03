@@ -56,7 +56,7 @@ class ReviewForm extends React.Component{
         })
         .catch(err => {
           this.setState({isProcessing: 0});
-          this.props.onSentimentResult('invalid');
+          this.props.onSentimentResult('off');
         })
     }
   }

@@ -53,6 +53,14 @@ class Homepage extends React.Component {
                         message='Your review has negative sentiment!'
                     />
                     break;
+                case "off":
+                    alert = <SentimentAlert
+                        alertShow={this.state.alertShow}
+                        onDismiss={this.dismissHandler}
+                        variant='warning'
+                        message='Sagemaker model is currently Off!'
+                    />
+                    break;
                 default:
                     break;
             }
