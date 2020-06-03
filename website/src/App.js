@@ -68,6 +68,8 @@ class App extends React.Component {
           <Col xs={8}>
             <h1>Is your review positive, or negative?</h1>
 
+            {console.log(process.env.REACT_APP_AWS_API_KEY)}
+
             <ReviewForm onSentimentResult={this.sentimentResultHandler} />
 
             { renderAlert(this.state.sentiment) }
