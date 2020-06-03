@@ -5,6 +5,7 @@ import axios from 'axios';
 
 import './review-form.component.scss';
 import reviews from '../../assets/reviews';
+import ReactGA from "react-ga";
 
 class ReviewForm extends React.Component{
   constructor(props) {
@@ -20,8 +21,17 @@ class ReviewForm extends React.Component{
     this.reviewStore = reviews;
   }
 
+  componentDidMount() {
+    ReactGA.initialize('UA-123791717-1');
+  }
+
   handleSubmit = async (event) => {
     event.preventDefault();
+
+    ReactGA.event({
+      category: "CLICK",
+      action: "Submitting Review"
+    });
 
     this.setState({isProcessing: 1});
 
@@ -68,6 +78,11 @@ class ReviewForm extends React.Component{
   }
 
   handleGetRandomView = () => {
+    ReactGA.event({
+      category: "CLICK",
+      action: "Submitting Review"
+    });
+
     let reviewIndex = Math.floor(Math.random() * Math.floor(23));
     this.setState({
       review: this.reviewStore[reviewIndex]
