@@ -1,4 +1,9 @@
 .main-container {
-  justify-content: space-between;
+  justify-content: center;
+  flex-direction: column;
   margin: 30px auto;
+
+  .form-area {
+    margin: auto;
+  }
 }

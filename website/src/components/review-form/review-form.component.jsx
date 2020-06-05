@@ -1,5 +1,5 @@
 import React from "react";
-import {Form, Button} from "react-bootstrap";
+import {Form, Button, Row} from "react-bootstrap";
 import lodash from 'lodash';
 import axios from 'axios';
 
@@ -79,7 +79,7 @@ class ReviewForm extends React.Component{
       action: "Get Random Review"
     });
 
-    let reviewIndex = Math.floor(Math.random() * Math.floor(40));
+    let reviewIndex = Math.floor(Math.random() * Math.floor(51));
     this.setState({
       review: this.reviewStore[reviewIndex]
     })
@@ -98,21 +98,32 @@ class ReviewForm extends React.Component{
             placeholder='Enter your review here to find out...'
           />
         </Form.Group>
-        <Button
-          className='submit-button'
-          type='submit'
-          xs='2'
-          variant="primary"
-          disabled={this.state.isProcessing === 1}
-        >Submit</Button>
-        <Button className='clear-button' xs='2' variant="danger" onClick={this.handleClear}>Clear</Button>
-        <Button
-          className='random-button'
-          xs='2'
-          variant="secondary"
-          onClick={this.handleGetRandomView}>
-          Get random reviews
-        </Button>
+        <Row className='button-area'>
+          <Button
+            className='submit-button button col-md-3 col-lg-2 col-xl-1'
+            type='submit'
+            variant="primary"
+            disabled={this.state.isProcessing === 1}
+          >
+            Submit
+          </Button>
+          <Button
+            className='clear-button button col-md-3 col-lg-2 col-xl-1'
+            variant="danger"
+            onClick={this.handleClear}
+            disabled={this.state.isProcessing === 1}
+          >
+            Clear
+          </Button>
+          <Button
+            className='random-button button col-md-5 col-lg-4'
+            variant="secondary"
+            onClick={this.handleGetRandomView}
+            disabled={this.state.isProcessing === 1}
+          >
+            Get random reviews
+          </Button>
+        </Row>
       </Form>
     )
   }

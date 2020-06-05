@@ -71,15 +71,13 @@ class Homepage extends React.Component {
         return (
             <Container className='main-container' fluid>
                 <Row>
-                    <Col xs={2} />
-                    <Col xs={8}>
+                    <Col md={8} className='form-area'>
                         <h1>Is your review positive, or negative?</h1>
 
                         <ReviewForm onSentimentResult={this.sentimentResultHandler} />
 
                         { renderAlert(this.state.sentiment) }
                     </Col>
-                    <Col xs={2} />
                 </Row>
             </Container>
         )

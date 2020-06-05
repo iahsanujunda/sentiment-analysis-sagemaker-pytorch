@@ -1,13 +1,19 @@
 .review-form {
   margin-top: 1.2em;
   margin-bottom: 1.5em;
+  justify-content: center;
+  flex-direction: column;
 
-  .clear-button {
-    margin-left: 10px;
-  }
+  .button-area{
+    margin: auto;
 
-  .random-button {
-    margin-left: 10px;
-    float: right;
+    .button{
+      margin: 5px;
+    }
+
+    .random-button {
+      margin-left: auto;
+      order: 2;
+    }
   }
 }
